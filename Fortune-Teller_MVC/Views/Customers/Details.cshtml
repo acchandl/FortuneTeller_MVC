@@ -1,0 +1,19 @@
+﻿@model Fortune_Teller_MVC.Models.Customer
+
+@{
+    ViewBag.Title = "Gypsy's Source";
+}
+
+<h2>It is Written in the Stars</h2>
+
+<div>
+    <h4>You're Cosmos Reveal...</h4>
+    <hr/>
+    @Model.FirstName @Model.LastName will retire in @ViewBag.NumberOfYears years with 
+    $ @ViewBag.AmountOfMoney in the bank, a vacation home in @ViewBag.Location
+    and a @ViewBag.Transportation.
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

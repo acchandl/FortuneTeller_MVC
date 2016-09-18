@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FortuneTellerMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BirthMonth">
+          <Key>
+            <PropertyRef Name="BirthMonthID" />
+          </Key>
+          <Property Name="BirthMonthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirthMonthName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ColorID">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="BirthMonthID" Type="int" Nullable="false" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="NumberOfSiblings" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Customers_BirthMonth">
+          <End Role="BirthMonth" Type="Self.BirthMonth" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirthMonth">
+              <PropertyRef Name="BirthMonthID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="BirthMonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_BirthMonth1">
+          <End Role="BirthMonth" Type="Self.BirthMonth" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirthMonth">
+              <PropertyRef Name="BirthMonthID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="BirthMonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_ColorID">
+          <End Role="ColorID" Type="Self.ColorID" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorID">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FortuneTellerMVCModelStoreContainer">
+          <EntitySet Name="BirthMonth" EntityType="Self.BirthMonth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorID" EntityType="Self.ColorID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customers_BirthMonth" Association="Self.FK_Customers_BirthMonth">
+            <End Role="BirthMonth" EntitySet="BirthMonth" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_BirthMonth1" Association="Self.FK_Customers_BirthMonth1">
+            <End Role="BirthMonth" EntitySet="BirthMonth" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_ColorID" Association="Self.FK_Customers_ColorID">
+            <End Role="ColorID" EntitySet="ColorID" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FortuneTellerMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BirthMonth">
+          <Key>
+            <PropertyRef Name="BirthMonthID" />
+          </Key>
+          <Property Name="BirthMonthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirthMonthName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers1" Relationship="Self.FK_Customers_BirthMonth1" FromRole="BirthMonth" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="ColorID">
+          <Key>
+            <PropertyRef Name="ColorID1" />
+          </Key>
+          <Property Name="ColorID1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_ColorID" FromRole="ColorID" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="BirthMonthID" Type="Int32" Nullable="false" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfSiblings" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BirthMonth1" Relationship="Self.FK_Customers_BirthMonth1" FromRole="Customers" ToRole="BirthMonth" />
+          <NavigationProperty Name="ColorID1" Relationship="Self.FK_Customers_ColorID" FromRole="Customers" ToRole="ColorID" />
+        </EntityType>
+        <Association Name="FK_Customers_BirthMonth1">
+          <End Role="BirthMonth" Type="Self.BirthMonth" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirthMonth">
+              <PropertyRef Name="BirthMonthID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="BirthMonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_ColorID">
+          <End Role="ColorID" Type="Self.ColorID" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorID">
+              <PropertyRef Name="ColorID1" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FortuneTellerMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BirthMonths" EntityType="Self.BirthMonth" />
+          <EntitySet Name="ColorIDs" EntityType="Self.ColorID" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <AssociationSet Name="FK_Customers_BirthMonth1" Association="Self.FK_Customers_BirthMonth1">
+            <End Role="BirthMonth" EntitySet="BirthMonths" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_ColorID" Association="Self.FK_Customers_ColorID">
+            <End Role="ColorID" EntitySet="ColorIDs" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FortuneTellerMVCModelStoreContainer" CdmEntityContainer="FortuneTellerMVCEntities">
+          <EntitySetMapping Name="BirthMonths">
+            <EntityTypeMapping TypeName="FortuneTellerMVCModel.BirthMonth">
+              <MappingFragment StoreEntitySet="BirthMonth">
+                <ScalarProperty Name="BirthMonthID" ColumnName="BirthMonthID" />
+                <ScalarProperty Name="BirthMonthName" ColumnName="BirthMonthName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorIDs">
+            <EntityTypeMapping TypeName="FortuneTellerMVCModel.ColorID">
+              <MappingFragment StoreEntitySet="ColorID">
+                <ScalarProperty Name="ColorID1" ColumnName="ColorID" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="FortuneTellerMVCModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="BirthMonthID" ColumnName="BirthMonthID" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="NumberOfSiblings" ColumnName="NumberOfSiblings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

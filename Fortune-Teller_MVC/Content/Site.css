@@ -22,3 +22,49 @@ select,
 textarea {
     max-width: 280px;
 }
+
+footer{
+    position: fixed;
+    bottom: 0;
+}
+
+.jumbotron{
+    color:white;
+    font:bold;
+    letter-spacing:-1px;
+    background-color:darkgoldenrod;
+    padding:10px;
+    margin-top:50px;
+}
+
+/*inside jumbotron*/
+h1, p.lead{
+    text-align:center;
+}
+
+
+
+body,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6
+{
+    font-family: Rye, "Helvettica Neue", Helvettica, Arial, cursive;
+}
+
+/*create page*/
+
+h2, .alert{
+    text-align:center;
+}
+
