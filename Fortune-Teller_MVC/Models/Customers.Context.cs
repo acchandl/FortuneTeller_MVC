@@ -15,6 +15,9 @@ namespace Fortune_Teller_MVC.Models
     
     public partial class FortuneTellerMVCEntities : DbContext
     {
+        //
+        private string _schemaName = string.Empty;
+            //
         public FortuneTellerMVCEntities()
             : base("name=FortuneTellerMVCEntities")
         {
@@ -22,9 +25,13 @@ namespace Fortune_Teller_MVC.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<FortuneTellerMVCEntities>(new CreateDatabaseIfNotExists<FortuneTellerMVCEntities>());
+            modelBuilder.Entity<FortuneTellerMVCEntities>().ToTable("FortuneTellerMVCEntity", _schemaName);
+            base.OnModelCreating(modelBuilder);
             throw new UnintentionalCodeFirstException();
+
         }
-    
+    public DbSet<FortuneTellerMVCEntities> FortuneTellerMVCEntity { get; set; }
         public virtual DbSet<BirthMonth> BirthMonths { get; set; }
         public virtual DbSet<ColorID> ColorIDs { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
